@@ -16,7 +16,7 @@ async function readData(){
     const app = document.getElementById('root')
     
     const container = document.createElement('div')
-    container.setAttribute('class','container')
+    container.setAttribute('class','container-fluid')
     
     app.appendChild(container)
 
@@ -24,30 +24,56 @@ async function readData(){
         
         const card= document.createElement('div')
         card.setAttribute('class','card')
+        card.setAttribute('style', 'max-width: 900px;')
 
-        const textoCard= document.createElement('div')
-        textoCard.setAttribute('class','textoCard')
+        const cardBody= document.createElement('div')
+        cardBody.setAttribute('class','card-body')
+
+
 
         const roomImg= document.createElement('img')
         roomImg.src=room.photo
-        const h1=document.createElement('p')
+        roomImg.setAttribute('class','card-img')
+        roomImg.setAttribute('style', 'max-width: 300px;')
+        
+        
+        const h1=document.createElement('h1')
         h1.textContent=room.name
-        console.log(room.name)
+        h1.setAttribute('class','card-title')
+                
         const p1= document.createElement('p')
+        p1.setAttribute('class','card-text')
         p1.textContent=room.property_type
+        
         const p2= document.createElement('p')
         p2.textContent=`R$ ${room.price}/noite`
+        p2.setAttribute('class','card-text')
+        
         const p3= document.createElement('p')
         p3.textContent=`Total de R$ ${room.price * diasEstadia}`
+        p3.setAttribute('class','card-text')
+
+        const row=document.createElement('div')
+        row.setAttribute('class', 'row')
+
+        const colAuto=document.createElement('div')
+        colAuto.setAttribute('class', 'col-auto')
+
+        const col=document.createElement('div')
+        col.setAttribute('class', 'col')
 
         container.appendChild(card)
-        card.appendChild(roomImg)
-        card.appendChild(textoCard)
+        card.appendChild(row)
+        row.appendChild(colAuto)
+        colAuto.appendChild(roomImg)
 
-        textoCard.appendChild(h1)
-        textoCard.appendChild(p1)
-        textoCard.appendChild(p2)
-        textoCard.appendChild(p3)
+        row.appendChild(col)
+        col.appendChild(cardBody)
+
+        cardBody.appendChild(h1)
+        cardBody.appendChild(p1)
+        cardBody.appendChild(p2)
+        cardBody.appendChild(p3)
     });
     
     

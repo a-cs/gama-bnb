@@ -1,24 +1,5 @@
-
-.container {
-    display: flex;
-    flex-wrap: wrap;
-}
-  
-.card {
-    margin: 1rem;
-    border: 1px solid gray;
-    display: flex;
-    justify-content: flex-start;
-    flex: 1 1 47%;
-    //flex-basis: 48%;
-    //flex-wrap: wrap;
-}
-
-.card img {
-    width: 300px;
-    height: 200px;
-    //object-fit:cover;
-    flex-shrink: 0;
-    border-radius: 25px;
-    margin: 1%;
+.card{
+    padding: 25px;
+    border: none;
+    border-bottom: lightgray 1px solid;
 }
