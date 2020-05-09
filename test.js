@@ -8,14 +8,24 @@ container.setAttribute('class', 'container-fluid')
 
 app.appendChild(container)
 
+console.log(document.getElementById("picker").value)
 
+readData()
 
 async function readData() {
+    container.innerHTML=""
+    const loading=document.createElement('div')
+    loading.setAttribute('class','text-center')
+    loading.innerHTML= '<div class="spinner-border text-danger" role="status"><span class="sr-only">Loading...</span></div>'
+    container.appendChild(loading)
+    
 
     const read = await fetch("https://api.sheety.co/30b6e400-9023-4a15-8e6c-16aa4e3b1e72")
     const data = await read.json();
+
+    //container.removeChild(loading)
      
-    showData(data, rowsPerPage, 1)
+   showData(data, rowsPerPage, 1)
 }
 
 
@@ -93,7 +103,7 @@ function pagination(data, page, wrapper) {
 
     wrapper.innerHTML =
         `<nav aria-label="Page navigation example">
-    <ul class="pagination">
+    <ul class="pagination justify-content-center" style="max-width: 900px;">
       <li class="page-item${previousItem}">
         <a class="page-link" href="#" aria-label="Previous" id="previousId">
           <span aria-hidden="true">&LT;</span>
