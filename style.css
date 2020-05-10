@@ -1,11 +1,41 @@
+.navbar-light .navbar-brand, .navbar-light .navbar-brand:hover, .navbar-light .navbar-brand:focus {
+    color: rgba(255, 26, 26);
+    font-size:25px;
+    font-weight: bold;
+}
+
+.navbar-light{
+margin-bottom: 20px;
+}
+
+
+
+
 .card{
     padding: 25px;
     border: none;
     border-bottom: lightgray 1px solid;
+    
+}
+
+.card:hover{
+    background-color: rgb(211, 211, 211,0.2);
 }
 
 .pagination{
     margin-top: 20px;
+}
+
+.page-item.active .page-link{
+    background-color: rgba(255, 26, 26);
+    border-color: rgba(255, 26, 26);
+    font-weight: bold;
+}
+
+.page-item .page-link{
+    color: rgba(255, 26, 26);
+    font-weight: bold;
+    
 }
 
 #rodape{
@@ -19,4 +49,9 @@
     background-color: rgba(255, 26, 26);
     border: none;
     
+}
+
+#pgrodape{
+    color: rgba(255, 26, 26, 0.8);
+    font-weight: bold;
 }

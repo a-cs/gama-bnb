@@ -1,5 +1,5 @@
 console.log("js carregado")
-var diasEstadia = 3
+let diasEstadia = 0
 const rowsPerPage = 5
 const app = document.getElementById('root')
 
@@ -8,40 +8,69 @@ container.setAttribute('class', 'container-fluid')
 
 app.appendChild(container)
 
-console.log(document.getElementById("picker").value)
+let dt = new Date();
+today = dt.toISOString().split('T')[0]
+dt.setDate(dt.getDate() - 1);
+let yt = dt.toISOString().split('T')[0]
+dt.setDate(dt.getDate() + 2)
+let tm = dt.toISOString().split('T')[0]
 
-readData()
+document.getElementById("checkin").setAttribute('min', today);
+document.getElementById("checkin").value = today
+document.getElementById("checkout").setAttribute('min', tm);
+document.getElementById("checkout").value = tm
+
+
+
+
+//readData()
+
+function search() {
+    console.log(document.getElementById("local").value)
+}
+
+
+function dias() {
+
+    let cin = new Date(document.getElementById("checkin").value)
+    let cout = new Date(document.getElementById("checkout").value)
+    diasEstadia = (cout - cin) / (1000 * 60 * 60 * 24)
+    return (diasEstadia)
+}
 
 async function readData() {
-    container.innerHTML=""
-    const loading=document.createElement('div')
-    loading.setAttribute('class','text-center')
-    loading.innerHTML= '<div class="spinner-border text-danger" role="status"><span class="sr-only">Loading...</span></div>'
+    container.innerHTML = ""
+    const loading = document.createElement('div')
+    loading.setAttribute('class', 'text-center')
+    loading.innerHTML = '<div class="spinner-border text-danger" role="status"><span class="sr-only">Loading...</span></div>'
     container.appendChild(loading)
-    
+
 
     const read = await fetch("https://api.sheety.co/30b6e400-9023-4a15-8e6c-16aa4e3b1e72")
     const data = await read.json();
 
     //container.removeChild(loading)
-     
-   showData(data, rowsPerPage, 1)
+
+
+    dias()
+
+    showData(data, rowsPerPage, 1)
 }
 
 
 function showData(data, rowsPerPage, page) {
-    
-    container.innerHTML=""
+
+    container.innerHTML = ""
 
     let start = rowsPerPage * (page - 1)
     let end = start + rowsPerPage
-    
-    if (end>=data.length){
-        end=data.length   
-    }   
-     
+
+    if (end >= data.length) {
+        end = data.length
+    }
+
     for (i = start; i < end; i++) {
-        
+
         let room = data[i]
 
         const card = document.createElement('div')
@@ -51,13 +80,13 @@ function showData(data, rowsPerPage, page) {
             `<div class="row">
             <div class="col-auto"><img
                     src=${room.photo.replace(/=(.*)/g, "=medium")}
-                    class="card-img" ></div>
+                    class="card-img " ></div>
             <div class="col">
                 <div class="card-body">
                     <h1 class="card-title">${room.name}</h1>
                     <p class="card-text">${room.property_type}</p>
-                    <p class="card-text">R$ ${room.price}/noite</p>
-                    <p class="card-text">Total de R$ ${room.price * diasEstadia}</p>
+                    <p class="card-text"><b>R$ ${room.price}</b>/noite</p>
+                    <p class="card-text">Total de R$ ${room.price * diasEstadia} por ${diasEstadia} dias </p>
                 </div>
             </div>
         </div>`
@@ -70,10 +99,10 @@ function showData(data, rowsPerPage, page) {
     const pags = document.createElement('div')
     pags.innerHTML = ""
     container.appendChild(pags)
-    pagination(data, page, pags)
+    pagination(data, page, pags,start,end)
 }
 
-function pagination(data, page, wrapper) {
+function pagination(data, page, wrapper, start, end) {
 
     wrapper.innerHTML = ""
 
@@ -118,17 +147,19 @@ function pagination(data, page, wrapper) {
         </a>
       </li>
     </ul>
-  </nav> `
+  </nav> 
+    <div class="text-center" style="max-width: 900px;" id="pgrodape"> ${start+1} - ${end} de ${data.length} quartos
+    </div> `
 
     document.getElementById("previousId").addEventListener("click", function () {
-    showData(data, rowsPerPage, (page-1))
+        showData(data, rowsPerPage, (page - 1))
     })
 
-    
+
     document.getElementById("nextId").addEventListener("click", function () {
-        showData(data, rowsPerPage, (page+1))
+        showData(data, rowsPerPage, (page + 1))
     })
-    
+
 
     for (let i = 1; i <= numberOfPages; i++) {
 
