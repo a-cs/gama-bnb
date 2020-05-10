@@ -16,9 +16,9 @@ dt.setDate(dt.getDate() + 2)
 let tm = dt.toISOString().split('T')[0]
 
 document.getElementById("checkin").setAttribute('min', today);
-document.getElementById("checkin").value = today
+document.getElementById("checkin").value = ""
 document.getElementById("checkout").setAttribute('min', tm);
-document.getElementById("checkout").value = tm
+document.getElementById("checkout").value = ""
 
 
 
@@ -28,6 +28,27 @@ document.getElementById("checkout").value = tm
 function search() {
     console.log(document.getElementById("local").value)
 }
+
+function checkinMenor(){
+    
+    let cin=new Date(document.getElementById("checkin").value)
+    let cout= new Date(document.getElementById("checkout").value)
+    
+    if (cin<cout){
+        
+        document.getElementById("button").disabled = false;
+        document.getElementById("checkin").style.borderColor ="#ced4da"
+        document.getElementById("checkout").style.borderColor ="#ced4da"
+        
+    } else{
+        
+        document.getElementById("button").disabled = true;
+        document.getElementById("checkin").style.borderColor = "rgba(255, 26, 26)"
+        document.getElementById("checkout").style.borderColor = "rgba(255, 26, 26)"
+    }
+    
+}
+
 
 
 function dias() {
@@ -62,6 +83,7 @@ function showData(data, rowsPerPage, page) {
 
     container.innerHTML = ""
 
+    let qtdHospedes = document.getElementById("qtdHospedes").value
     let start = rowsPerPage * (page - 1)
     let end = start + rowsPerPage
 
@@ -86,7 +108,7 @@ function showData(data, rowsPerPage, page) {
                     <h1 class="card-title">${room.name}</h1>
                     <p class="card-text">${room.property_type}</p>
                     <p class="card-text"><b>R$ ${room.price}</b>/noite</p>
-                    <p class="card-text">Total de R$ ${room.price * diasEstadia} por ${diasEstadia} dias </p>
+                    <p class="card-text">Total de R$ ${room.price * diasEstadia} por ${diasEstadia} dias para ${qtdHospedes} pessoas</p>
                 </div>
             </div>
         </div>`

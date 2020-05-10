@@ -9,6 +9,11 @@ margin-bottom: 20px;
 }
 
 
+#button:disabled{
+    color:grey
+}
+
+
 
 
 .card{
@@ -51,7 +56,7 @@ margin-bottom: 20px;
     
 }
 
-#pgrodape{
-    color: rgba(255, 26, 26, 0.8);
-    font-weight: bold;
+.img-thumbnail:hover{
+    opacity:60%;
 }
+

@@ -1,6 +1,7 @@
 <html>
 
 <head>
+    <title>Gama BNB</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
@@ -18,17 +19,17 @@
 
 
         <div class="form-inline my-2 my-lg-0">
-            <input class="form-control" type="search" placeholder="Para onde você vai" aria-label="Search" id="local" onkeyup="search()">
+            <input class="form-control" type="search" placeholder="Para onde?" aria-label="Search" id="local" onkeyup="search()">
 
 
-            <input type="date" id="checkin" class="form-control" >
+            <input type="date" id="checkin" class="form-control" onchange="checkinMenor()">
             
-            <input type="date" id="checkout" class="form-control" >
+            <input type="date" id="checkout" class="form-control" onchange="checkinMenor()" >
 
-            <input class="form-control" type="search" placeholder="Insira o número de Hospedes" aria-label="Search">
+            <input class="form-control" type="number" placeholder="Número de Hospedes" aria-label="Number" min="1" max="8" id="qtdHospedes" value="1">
 
 
-            <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" onclick="readData()"> Buscar</button>
+            <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" onclick="readData()" id="button" disabled> Buscar</button>
         </div>
 
 
