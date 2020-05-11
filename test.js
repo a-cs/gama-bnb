@@ -16,14 +16,14 @@ dt.setDate(dt.getDate() + 2)
 let tm = dt.toISOString().split('T')[0]
 
 document.getElementById("checkin").setAttribute('min', today);
-document.getElementById("checkin").value = ""
+document.getElementById("checkin").value = yt
 document.getElementById("checkout").setAttribute('min', tm);
-document.getElementById("checkout").value = ""
+document.getElementById("checkout").value = today
 
 
 
 
-//readData()
+readData()
 
 function search() {
     console.log(document.getElementById("local").value)
